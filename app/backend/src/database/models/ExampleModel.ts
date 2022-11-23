@@ -8,6 +8,7 @@ class Example extends Model {
 
 Example.init({
   // ... Campos
+  // marcos
 }, {
   // ... Outras configs
   underscored: true,
