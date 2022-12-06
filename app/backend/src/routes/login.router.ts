@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import LoginController from '../controllers/login.controller';
+// teste
 
 const router = Router();
 
