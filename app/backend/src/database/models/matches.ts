@@ -1,45 +1,53 @@
-import { Model, INTEGER, BOOLEAN } from 'sequelize';
+import { DataTypes, Model } from 'sequelize';
 import db from '.';
+import Teams from './teams';
 
-class Matches extends Model {
+export default class Matches extends Model {
   declare id: number;
   declare homeTeam: number;
   declare homeTeamGoals: number;
   declare awayTeam: number;
-  declare awayTeamsGoals: number;
+  declare awayTeamGoals: number;
   declare inProgress: boolean;
 }
 
-Matches.init({
-  id: {
-    allowNull: false,
-    autoIncrement: true,
-    type: INTEGER,
+Matches.init(
+  {
+    id: {
+      allowNull: false,
+      autoIncrement: true,
+      primaryKey: true,
+      type: DataTypes.INTEGER,
+    },
+    homeTeam: {
+      allowNull: false,
+      type: DataTypes.INTEGER,
+    },
+    homeTeamGoals: {
+      allowNull: false,
+      type: DataTypes.INTEGER,
+    },
+    awayTeam: {
+      allowNull: false,
+      type: DataTypes.INTEGER,
+    },
+    awayTeamGoals: {
+      allowNull: false,
+      type: DataTypes.INTEGER,
+    },
+    inProgress: {
+      allowNull: false,
+      type: DataTypes.INTEGER,
+    } },
+  {
+    sequelize: db,
+    underscored: true,
+    modelName: 'matches',
+    timestamps: false,
   },
-  homeTeam: {
-    allowNull: false,
-    type: INTEGER,
-  },
-  homeTeamGoals: {
-    allowNull: false,
-    type: INTEGER,
-  },
-  awayTeam: {
-    allowNull: false,
-    type: INTEGER,
-  },
-  awayTeamGoals: {
-    allowNull: false,
-    type: INTEGER,
-  },
-  inProgress: {
-    allowNull: false,
-    type: BOOLEAN,
-  },
-}, {
-  underscored: true,
-  sequelize: db,
-  freezeTableName: true,
-  timestamps: false,
-});
-export default Matches;
+);
+
+Matches.belongsTo(Teams, { foreignKey: 'homeTeam', as: 'teamHome' });
+Matches.belongsTo(Teams, { foreignKey: 'awayTeam', as: 'teamAway' });
+Teams.hasMany(Matches, { foreignKey: 'homeTeam', as: 'homeMatches' });
+Teams.hasMany(Matches, { foreignKey: 'awayTeam', as: 'awayMatches' });
