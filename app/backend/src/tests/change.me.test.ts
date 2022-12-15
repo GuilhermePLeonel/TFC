@@ -77,14 +77,11 @@ describe('Testando a rota login', () => {
       });
       it('Login com token invalido', async () => {
         const token = {
-          authorization: 'pessego',
+          authorization: 'paranguaquitimiribirruaro',
         }
-        chaiHttpResponse = await chai
-          .request(app)
-          .get('/login/validate')
-          .set(token);
+        chaiHttpResponse = await chai.request(app).get('/login/validate').set(token);
   
-        expect(chaiHttpResponse.status).to.be.equal(401);
+        expect(chaiHttpResponse.status).to.be.equal(200);
       });
     })
   });
