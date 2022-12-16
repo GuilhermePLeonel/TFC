@@ -21,6 +21,7 @@ export default class LoginController {
     }
   };
 
+  // teste
   public validate = async (req: Request, res: Response) => {
     const { authorization } = req.headers;
     const result = await this.service.role(authorization || '');
