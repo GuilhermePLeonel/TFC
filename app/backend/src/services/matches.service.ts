@@ -29,6 +29,7 @@ export default class MatchesService {
   async matchesSave({ homeTeam, awayTeam, homeTeamGoals, awayTeamGoals }: IMatchesDB) {
     const all = await this.allMatches(undefined);
     const first = all.find((match) => match.id === homeTeam);
+    // console.log(all);
     const second = all.find((match) => match.id === awayTeam);
     if (!first || !second) {
       return { status: 404, message: 'There is no team with such id!' };

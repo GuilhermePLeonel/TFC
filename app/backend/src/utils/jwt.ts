@@ -17,4 +17,16 @@ export default class JWT {
       return { type: 400 };
     }
   };
+
+  validateMatchesToken = (token: string) => {
+    const mySecret = process.env.JWT_SECRET || 'my_secret';
+    try {
+      if (!token) {
+        return { status: 401, message: 'Token not found' };
+      }
+      jwt.verify(token, mySecret);
+    } catch (err) {
+      return { status: 401, message: 'Token must be a valid token' };
+    }
+  };
 }

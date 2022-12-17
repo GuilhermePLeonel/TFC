@@ -16,7 +16,7 @@ export default class MatchesController {
   matchesSave = async (req: Request, res: Response) => {
     const { authorization } = req.headers;
     const { homeTeam, awayTeam, homeTeamGoals, awayTeamGoals } = req.body;
-    const validation = this.jwt.validate(authorization as string);
+    const validation = this.jwt.validateMatchesToken(authorization as string);
     if (validation) {
       return res.status(validation.status).json({ message: validation.message });
     }
