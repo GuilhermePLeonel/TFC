@@ -1,13 +1,13 @@
 import { Router } from 'express';
 import MatchesController from '../controllers/matches.controller';
 // teste
-const router = Router();
+const matchesRouter = Router();
 
 const matchesController = new MatchesController();
 
-router.get('/', (req, res) => matchesController.AllMatches(req, res));
-router.post('/', (req, res) => matchesController.matchesSave(req, res));
-router.patch('/:id/finish', (req, res) => matchesController.matchUpdate(req, res));
-router.patch('/:id', (req, res) => matchesController.resultUpdate(req, res));
+matchesRouter.get('/', (req, res) => matchesController.AllMatches(req, res));
+matchesRouter.post('/', (req, res) => matchesController.matchesSave(req, res));
+matchesRouter.patch('/:id/finish', (req, res) => matchesController.matchUpdate(req, res));
+matchesRouter.patch('/:id', (req, res) => matchesController.resultUpdate(req, res));
 
-export default router;
+export default matchesRouter;
