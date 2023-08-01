@@ -14,6 +14,8 @@ O TFC é um projeto que consiste em um site informativo sobre partidas e classif
 - Docker e docker-compose para a criação de ambientes isolados e facilitar a integração das aplicações.
 - Sequelize para a modelagem de dados e gerenciamento do banco de dados.
 - TDD para o desenvolvimento orientado a testes, garantindo a robustez das funcionalidades implementadas.
+-  A construção de um CRUD com TypeScript, utilizando ORM.
+- A criação e associação de tabelas usando models do sequelize;
 
 ## Fluxo de Funcionamento
 
